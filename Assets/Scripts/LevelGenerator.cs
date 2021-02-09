@@ -25,15 +25,6 @@ public class LevelGenerator : MonoBehaviour
         int height = 64;
         TileType[,] grid = new TileType[height, width];
 
-        /*FillBlock(grid, 0, 0, width, height, TileType.Wall);
-        FillBlock(grid, 26, 26, 12, 12, TileType.Empty);
-        FillBlock(grid, 32, 28, 1, 1, TileType.Player);
-        FillBlock(grid, 30, 30, 1, 1, TileType.Dagger);
-        FillBlock(grid, 34, 30, 1, 1, TileType.Key);
-        FillBlock(grid, 32, 32, 1, 1, TileType.Door);
-        FillBlock(grid, 32, 36, 1, 1, TileType.Enemy);
-        FillBlock(grid, 32, 34, 1, 1, TileType.End);*/
-
         GenerateLevel(width, height);
 
         Debugger.instance.AddLabel(32, 26, "Room 1");
@@ -117,14 +108,6 @@ public class LevelGenerator : MonoBehaviour
                     FillBlock(grid, middleOfRoom1 - new Vector2Int(horizontalDistance, 0), new Vector2Int(horizontalDistance, 1), TileType.Empty);
                 else
                     FillBlock(grid, middleOfRoom1, new Vector2Int(horizontalDistance + 1, 1), TileType.Empty);
-                /*if (middleOfRoom1.y > middleOfRoom2.y)
-                    FillBlock(grid, middleOfRoom2, new Vector2Int(1, middleOfRoom1.y - middleOfRoom2.y), TileType.Empty);
-                else
-                    FillBlock(grid, middleOfRoom1, new Vector2Int(1, middleOfRoom2.y - middleOfRoom1.y), TileType.Empty);
-                if (middleOfRoom1.x > middleOfRoom2.x)
-                    FillBlock(grid, middleOfRoom2, new Vector2Int(middleOfRoom1.x - middleOfRoom2.x, 1), TileType.Empty);
-                else
-                    FillBlock(grid, middleOfRoom1, new Vector2Int(middleOfRoom2.x - middleOfRoom1.x, 1), TileType.Empty);*/
             }
         }
 
