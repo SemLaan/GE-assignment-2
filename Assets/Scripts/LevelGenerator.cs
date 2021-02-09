@@ -116,21 +116,25 @@ public class LevelGenerator : MonoBehaviour
         Room swordRoom = root.children[0].children[1].children[0].children[0];
         Room finishRoom = root.children[1].children[1].children[1].children[1];
         Room nextToFinishRoom = root.children[1].children[1].children[1].children[0];
+        Room keyRoom = root.GetLeafRoom(true);
+        while (keyRoom == finishRoom || keyRoom == swordRoom || keyRoom == startingRoom)
+            keyRoom = root.GetLeafRoom(true);
+        Room enemyRoom = root.GetLeafRoom(true);
+        while (enemyRoom == finishRoom || enemyRoom == swordRoom || enemyRoom == startingRoom || enemyRoom == keyRoom)
+            enemyRoom = root.GetLeafRoom(true);
+
         if (finishRoom.position.x == nextToFinishRoom.position.x)
         {
             FillBlock(grid, finishRoom.shrunkPosition + new Vector2Int(finishRoom.shrunkSize.x, -2) / 2, Vector2Int.one, TileType.Door);
         }
         else // if finishRoom.position.y == nextToFinishRoom.position.y
         {
-            FillBlock(grid, nextToFinishRoom.shrunkPosition + new Vector2Int(1 + nextToFinishRoom.shrunkSize.x * 2, nextToFinishRoom.shrunkSize.y) / 2, Vector2Int.one, TileType.Door);
+            FillBlock(grid, 
+                nextToFinishRoom.shrunkPosition + new Vector2Int(1 + nextToFinishRoom.shrunkSize.x * 2, 
+                nextToFinishRoom.shrunkSize.y) / 2, 
+                Vector2Int.one, TileType.Door);
         }
-
-        Room keyRoom = root.GetLeafRoom(true);
-        while (keyRoom == finishRoom || keyRoom == swordRoom || keyRoom == startingRoom)
-            keyRoom = root.GetLeafRoom(true); 
-        Room enemyRoom = root.GetLeafRoom(true);
-        while (enemyRoom == finishRoom || enemyRoom == swordRoom || enemyRoom == startingRoom || enemyRoom == keyRoom)
-            enemyRoom = root.GetLeafRoom(true);
+        
         FillBlock(grid, startingRoom.shrunkPosition + startingRoom.shrunkSize / 2, Vector2Int.one, TileType.Player);
         FillBlock(grid, swordRoom.shrunkPosition + swordRoom.shrunkSize / 2, Vector2Int.one, TileType.Dagger);
         FillBlock(grid, finishRoom.shrunkPosition + finishRoom.shrunkSize / 2, Vector2Int.one, TileType.End);
