@@ -50,7 +50,7 @@ namespace Utils {
         }
 
         private void StartLevel() {
-            Random.InitState(randomSeed);
+            //Random.InitState(randomSeed);
             level = GameObject.Instantiate(levelPrefab);
             isDone = false;
         }
